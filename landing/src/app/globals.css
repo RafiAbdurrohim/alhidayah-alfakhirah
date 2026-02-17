@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Google Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* ── CSS Variables ── */
+@layer base {
+  :root {
+    --font-cormorant: 'Cormorant Garamond', serif;
+    --font-dm-sans:   'DM Sans', sans-serif;
+    --font-amiri:     'Amiri', serif;
+
+    /* shadcn compat */
+    --background:   222 20% 5%;
+    --foreground:   45 30% 93%;
+    --primary:      181 83% 36%;
+    --primary-foreground: 0 0% 100%;
+    --border:       45 30% 20%;
+    --input:        45 10% 12%;
+    --ring:         181 83% 36%;
+    --radius:       0px;
+  }
+}
+
+/* ── Base Reset ── */
+@layer base {
+  * { @apply border-border; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply bg-dark text-cream font-sans font-light antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Noise texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.35;
+  }
+}
+
+/* ── Utility Classes ── */
+@layer utilities {
+  /* Typography */
+  .font-display  { font-family: var(--font-cormorant); }
+  .font-arabic   { font-family: var(--font-amiri); }
+
+  /* Gold line dividers */
+  .gold-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+  }
+  .gold-line-left {
+    height: 1px;
+    width: 60px;
+    background: linear-gradient(90deg, #C9A84C, transparent);
+  }
+
+  /* Scroll-reveal (JS toggles .visible) */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+  .reveal-d1 { transition-delay: 0.1s; }
+  .reveal-d2 { transition-delay: 0.2s; }
+  .reveal-d3 { transition-delay: 0.3s; }
+  .reveal-d4 { transition-delay: 0.4s; }
+
+  /* Section eyebrow label */
+  .eyebrow {
+    @apply text-[11px] tracking-[0.25em] uppercase text-gold font-normal;
+  }
+
+  /* Teal glow effect */
+  .teal-glow {
+    box-shadow: 0 0 32px rgba(14,165,164,0.2);
+  }
+  .teal-glow-sm {
+    box-shadow: 0 0 16px rgba(14,165,164,0.15);
+  }
+
+  /* Gold border */
+  .gold-border {
+    border: 1px solid rgba(201,168,76,0.2);
+  }
+  .gold-border-hover {
+    transition: border-color 0.3s;
+  }
+  .gold-border-hover:hover {
+    border-color: rgba(201,168,76,0.5);
+  }
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: #0A0A08; }
+::-webkit-scrollbar-thumb { background: #C9A84C40; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #C9A84C80; }
+
+/* ── RTL Support ── */
+[dir="rtl"] .gold-line-left {
+  background: linear-gradient(270deg, #C9A84C, transparent);
+}
+[dir="rtl"] .reveal {
+  transform: translateY(24px);
+}

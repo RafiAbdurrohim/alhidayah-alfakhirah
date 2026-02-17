@@ -1,0 +1,114 @@
+{
+  "common": {
+    "appName": "Alhidayah Alfakhirah",
+    "tagline": "Delicious Food Delivered to Your Doorstep in Makkah",
+    "downloadApp": "Download App",
+    "learnMore": "Learn More",
+    "getStarted": "Get Started",
+    "contactUs": "Contact Us"
+  },
+  "nav": {
+    "home": "Home",
+    "features": "Features",
+    "menu": "Menu",
+    "about": "About",
+    "contact": "Contact",
+    "becomeDriver": "Become a Driver",
+    "login": "Login"
+  },
+  "hero": {
+    "title": "Authentic Cuisine",
+    "subtitle": "Delivered Fresh to Your Door",
+    "description": "Experience the finest selection of traditional and modern dishes, delivered hot and fresh to your location in Makkah.",
+    "orderNow": "Order Now",
+    "viewMenu": "View Menu"
+  },
+  "features": {
+    "title": "Why Choose Us",
+    "subtitle": "We deliver more than just food",
+    "fastDelivery": {
+      "title": "Fast Delivery",
+      "description": "Your food arrives hot and fresh within 30-45 minutes"
+    },
+    "wideSelection": {
+      "title": "Wide Selection",
+      "description": "Choose from hundreds of delicious dishes and cuisines"
+    },
+    "easyOrdering": {
+      "title": "Easy Ordering",
+      "description": "Simple and intuitive app interface for seamless ordering"
+    },
+    "securePayment": {
+      "title": "Secure Payment",
+      "description": "Multiple payment options with bank-level security"
+    }
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "subtitle": "Ordering is as easy as 1-2-3",
+    "step1": {
+      "title": "Browse Menu",
+      "description": "Explore our wide variety of dishes"
+    },
+    "step2": {
+      "title": "Place Order",
+      "description": "Add items to cart and checkout"
+    },
+    "step3": {
+      "title": "Track Delivery",
+      "description": "Monitor your order in real-time"
+    },
+    "step4": {
+      "title": "Enjoy Food",
+      "description": "Receive your hot and fresh meal"
+    }
+  },
+  "driver": {
+    "title": "Join Our Team",
+    "subtitle": "Become a Delivery Driver",
+    "description": "Flexible hours, competitive earnings, and great incentives. Start earning 2,500-3,500 SAR per month.",
+    "benefits": {
+      "flexible": "Flexible working hours",
+      "competitive": "Competitive earnings",
+      "bonuses": "Performance bonuses",
+      "insurance": "Insurance coverage"
+    },
+    "applyNow": "Apply Now"
+  },
+  "testimonials": {
+    "title": "What Our Customers Say",
+    "subtitle": "Real reviews from real customers"
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "We'd love to hear from you",
+    "name": "Your Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "message": "Your Message",
+    "send": "Send Message",
+    "address": "Restaurant Address",
+    "hours": "Operating Hours",
+    "dailyHours": "Daily: 10:00 AM - 11:00 PM"
+  },
+  "footer": {
+    "description": "Your trusted food delivery service in Makkah, bringing delicious meals right to your doorstep.",
+    "quickLinks": "Quick Links",
+    "aboutUs": "About Us",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "faq": "FAQ",
+    "followUs": "Follow Us",
+    "newsletter": "Newsletter",
+    "newsletterText": "Subscribe to get special offers and updates",
+    "emailPlaceholder": "Enter your email",
+    "subscribe": "Subscribe",
+    "copyright": "© 2026 Alhidayah Alfakhirah. All rights reserved.",
+    "madeWith": "Made with ❤️ in Makkah"
+  },
+  "cta": {
+    "downloadTitle": "Download Our App Today",
+    "downloadSubtitle": "Available on iOS and Android",
+    "availableOn": "Available on"
+  }
+}
