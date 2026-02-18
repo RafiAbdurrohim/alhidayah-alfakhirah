@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const createNextIntlPlugin = require("next-intl/plugin");
 
-// Specify the path to i18n config file
 const withNextIntl = createNextIntlPlugin("./src/i18n/config.ts");
 
 const nextConfig = {
@@ -9,6 +8,8 @@ const nextConfig = {
     domains: ["firebasestorage.googleapis.com"],
   },
   reactStrictMode: true,
+  // Force dynamic rendering
+  output: "standalone",
 };
 
 module.exports = withNextIntl(nextConfig);
