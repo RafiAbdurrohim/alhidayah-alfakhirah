@@ -8,8 +8,14 @@ const nextConfig = {
     domains: ["firebasestorage.googleapis.com"],
   },
   reactStrictMode: true,
-  // Force dynamic rendering
-  output: "standalone",
+  // Disable static optimization for all pages
+  experimental: {
+    appDir: true,
+  },
+  // Force all pages to be dynamic
+  generateBuildId: async () => {
+    return "vercel-dynamic-build";
+  },
 };
 
 module.exports = withNextIntl(nextConfig);
