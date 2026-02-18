@@ -15,7 +15,16 @@ export interface User {
 }
 
 // Order types
-export type OrderStatus = "NEW" | "PROCESSING" | "ACCEPTED" | "PICKED_UP" | "ON_THE_WAY" | "DELIVERED" | "CANCELLED";
+export type OrderStatus =
+  | "PENDING"
+  | "PROCESSING"
+  | "ACCEPTED"
+  | "ASSIGNED" // ← tambahkan ini
+  | "PICKED_UP"
+  | "ON_THE_WAY"
+  | "DELIVERED"
+  | "CANCELLED"
+  | "REJECTED";
 
 export interface OrderItem {
   menuId: string;
