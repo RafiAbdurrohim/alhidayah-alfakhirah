@@ -43,7 +43,7 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="min-h-screen bg-dark flex items-center justify-center relative overflow-hidden px-4">
+    <main className="min-h-screen bg-dark flex items-center justify-center relative overflow-hidden px-4 pt-24">
       {/* ── Background glows ── */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_80%_at_80%_50%,rgba(14,165,164,0.06)_0%,transparent_60%)]" />
@@ -55,7 +55,7 @@ export default function LoginPage() {
       <div className="absolute bottom-[-60px] left-[-60px] w-[300px] h-[300px] rounded-full border border-teal/5 pointer-events-none" />
 
       {/* ── Card ── */}
-      <div className="relative z-10 w-full max-w-[420px]">
+      <div className="relative z-[60] w-full max-w-[420px]">
         {/* Back link */}
         <Link href={`/${locale}`} className="inline-flex items-center gap-2 text-[11px] tracking-[0.15em] uppercase text-muted hover:text-gold-light transition-colors mb-8 group">
           <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
