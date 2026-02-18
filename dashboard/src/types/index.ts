@@ -16,10 +16,11 @@ export interface User {
 
 // Order types
 export type OrderStatus =
+  | "NEW" // ← tambahkan ini
   | "PENDING"
   | "PROCESSING"
   | "ACCEPTED"
-  | "ASSIGNED" // ← tambahkan ini
+  | "ASSIGNED"
   | "PICKED_UP"
   | "ON_THE_WAY"
   | "DELIVERED"
