@@ -60,7 +60,10 @@ export function Header() {
         {/* ── Actions ── */}
         <div className="flex items-center gap-3">
           {/* Language Switcher */}
-          <button onClick={switchLocale} className="text-[11px] tracking-[0.15em] uppercase text-muted hover:text-gold-light transition-colors hidden sm:block">
+          <button onClick={switchLocale} className="flex items-center gap-2 text-[12px] font-normal tracking-wide text-cream-dim hover:text-gold-light border border-gold/20 px-3 py-1.5 hover:border-gold/40 transition-all hidden sm:block">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+              <path d="M12 21a9 9 0 100-18 9 9 0 000 18zM3.6 9h16.8M3.6 15h16.8M12 3c1.657 4.03 2.25 8.25 2.25 12.75M12 3c-1.657 4.03-2.25 8.25-2.25 12.75" />
+            </svg>
             {locale === "en" ? "عربي" : "EN"}
           </button>
 
