@@ -42,8 +42,7 @@ export function Footer() {
                 <span className="font-arabic text-gold text-lg leading-none">ه</span>
               </div>
               <span className="font-display text-[18px] font-light tracking-wide text-cream">
-                Alhidayah{" "}
-                <em className="italic text-gold-light not-italic font-light">Alfakhirah</em>
+                Masar Alhidayah Co. Ltd
               </span>
             </div>
 

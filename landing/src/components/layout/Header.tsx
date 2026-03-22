@@ -43,7 +43,7 @@ export function Header() {
             <span className="font-arabic text-gold text-lg leading-none">ه</span>
           </div>
           <span className="font-display text-[18px] font-light tracking-wide text-cream hidden sm:block">
-            Alhidayah <span className="italic text-gold-light font-light">Alfakhirah</span>
+            Masar Alhidayah Co. Ltd
           </span>
         </Link>
 

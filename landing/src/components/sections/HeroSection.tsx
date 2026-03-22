@@ -44,7 +44,7 @@ export function HeroSection() {
 
         {/* Arabic subtitle */}
         <p className="hero-reveal reveal font-arabic text-[clamp(24px,2.5vw,38px)] text-gold-dim/70 mb-8 text-right lg:text-left" dir="rtl">
-          الهداية الفاخرة
+          ماسر الهداية
         </p>
 
         {/* Description */}
