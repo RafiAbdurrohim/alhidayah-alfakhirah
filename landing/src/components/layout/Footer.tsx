@@ -1,11 +1,13 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Instagram, Facebook, MessageCircle } from "lucide-react";
 import { SOCIAL_LINKS, CONTACT_INFO } from "@/lib/utils";
+import Link from "next/link";
 
 export function Footer() {
   const t = useTranslations();
+  const locale = useLocale();
 
   const socialIcons = {
     instagram: Instagram,
@@ -16,26 +18,24 @@ export function Footer() {
   const quickLinks = [
     { label: t("footer.aboutUs"),        href: "#" },
     { label: t("footer.faq"),            href: "#" },
-    { label: t("footer.privacyPolicy"),  href: "#" },
-    { label: t("footer.termsOfService"), href: "#" },
+    { label: t("footer.privacyPolicy"),  href: `/${locale}/privacy` },
+    { label: t("footer.termsOfService"), href: `/${locale}/terms` },
   ];
 
   const navLinks = [
-    { label: t("nav.home"),    href: "#hero" },
-    { label: t("nav.features"),href: "#features" },
-    { label: t("nav.contact"), href: "#contact" },
-    { label: t("driver.title") || "Become a Driver", href: "#driver" },
+    { label: t("nav.home"),     href: "#hero" },
+    { label: t("nav.features"), href: "#features" },
+    { label: "Services & Pricing", href: "#services" },
+    { label: t("nav.contact"),  href: "#contact" },
   ];
 
   return (
     <footer className="bg-dark-2 border-t border-gold/10">
       <div className="max-w-[1200px] mx-auto px-6 lg:px-12 py-16">
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
 
           {/* ── Brand ── */}
           <div className="lg:col-span-2">
-            {/* Logo */}
             <div className="flex items-center gap-3 mb-5">
               <div className="relative w-9 h-9 border border-gold flex items-center justify-center flex-shrink-0">
                 <div className="absolute inset-[5px] border border-gold/25" />
@@ -45,12 +45,9 @@ export function Footer() {
                 Masar Alhidayah Co. Ltd
               </span>
             </div>
-
             <p className="text-[14px] text-muted leading-[1.75] mb-6 max-w-[300px]">
               {t("footer.description")}
             </p>
-
-            {/* Social */}
             <div className="flex gap-3">
               {Object.entries(SOCIAL_LINKS)
                 .filter(([key]) => key in socialIcons)
@@ -58,13 +55,8 @@ export function Footer() {
                 .map(([key, url]) => {
                   const Icon = socialIcons[key as keyof typeof socialIcons];
                   return (
-                    <a
-                      key={key}
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-9 h-9 border border-gold/15 flex items-center justify-center text-muted hover:border-teal/40 hover:text-teal transition-all duration-300"
-                    >
+                    <a key={key} href={url} target="_blank" rel="noopener noreferrer"
+                      className="w-9 h-9 border border-gold/15 flex items-center justify-center text-muted hover:border-teal/40 hover:text-teal transition-all duration-300">
                       <Icon size={14} />
                     </a>
                   );
@@ -92,9 +84,9 @@ export function Footer() {
             <ul className="space-y-3 mb-8">
               {quickLinks.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} className="text-[14px] text-muted hover:text-cream-dim transition-colors duration-200">
+                  <Link href={l.href} className="text-[14px] text-muted hover:text-cream-dim transition-colors duration-200">
                     {l.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

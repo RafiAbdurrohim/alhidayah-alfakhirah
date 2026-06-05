@@ -65,8 +65,8 @@ export const SOCIAL_LINKS = {
  * Contact information
  */
 export const CONTACT_INFO = {
-  phone: '+966 XX XXX XXXX',
-  email: 'info@alhidayahalfakhirah.com',
+  phone: '+966 57 384 2627',
+  email: 'masaralhidayahco@gmail.com',
   address: 'Makkah, Saudi Arabia',
   hours: {
     en: 'Daily: 10:00 AM - 11:00 PM',
