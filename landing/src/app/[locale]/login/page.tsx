@@ -15,36 +15,53 @@ export default function LoginPage() {
   const params = useParams();
   const locale = (params?.locale as string) ?? "en";
 
-  useEffect(() => {
-    const dashboardUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:3001";
-    window.location.href = `${dashboardUrl}/login`;
-  }, []);
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const GATE_EMAIL = "admin@alhidayahalfakhirah.com";
-  const GATE_PASSWORD = "admin123"; // ganti sesuai keinginan
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setLoading(true);
 
-    await new Promise((r) => setTimeout(r, 600));
+    try {
+      const { getAuth, signInWithEmailAndPassword } = await import("firebase/auth");
+      const { getDoc, doc } = await import("firebase/firestore");
+      const { app, db } = await import("@/lib/firebase");
+      
+      const auth = getAuth(app);
+      const userCredential = await signInWithEmailAndPassword(auth, email.trim(), password);
+      const user = userCredential.user;
 
-    if (email !== GATE_EMAIL || password !== GATE_PASSWORD) {
-      setError("Invalid credentials. Access denied.");
+      // Ambil data user dari Firestore untuk memvalidasi role
+      const userDoc = await getDoc(doc(db, "users", user.uid));
+      if (!userDoc.exists()) {
+        await auth.signOut();
+        throw new Error("Data user tidak ditemukan.");
+      }
+
+      const userData = userDoc.data();
+      if (userData.role !== "SUPER_ADMIN") {
+        await auth.signOut();
+        throw new Error("Akses ditolak: Hanya Super Admin yang diizinkan.");
+      }
+
+      // Login sukses & terverifikasi super admin → arahkan langsung ke dashboard
+      const dashboardUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:3001";
+      window.location.href = `${dashboardUrl}/dashboard`;
+    } catch (err: any) {
+      console.error("Login error:", err);
+      let errMsg = "Login gagal. Coba lagi.";
+      if (err.code === "auth/invalid-credential" || err.code === "auth/wrong-password" || err.code === "auth/user-not-found") {
+        errMsg = "Email atau password salah.";
+      } else if (err.message) {
+        errMsg = err.message;
+      }
+      setError(errMsg);
       setLoading(false);
-      return;
     }
-
-    // Credentials benar → redirect ke dashboard login
-    const dashboardUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:3001";
-    window.location.href = `${dashboardUrl}/login?email=${encodeURIComponent(email)}`;
   };
 
   return (

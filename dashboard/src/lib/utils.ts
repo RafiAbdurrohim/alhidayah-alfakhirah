@@ -14,12 +14,7 @@ export function cn(...inputs: ClassValue[]) {
  * Format currency in SAR
  */
 export function formatCurrency(amount: number): string {
-  return new Intl.NumberFormat('ar-SA', {
-    style: 'currency',
-    currency: 'SAR',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(amount);
+  return `SAR ${amount.toLocaleString('en-US')}`;
 }
 
 /**
