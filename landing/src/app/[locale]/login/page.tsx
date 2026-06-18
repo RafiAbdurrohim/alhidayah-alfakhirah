@@ -21,46 +21,24 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const searchParams = new URLSearchParams(window.location.search);
+      const errParam = searchParams.get("error");
+      if (errParam) {
+        setError(decodeURIComponent(errParam));
+      }
+    }
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setLoading(true);
 
-    try {
-      const { signInWithEmailAndPassword } = await import("firebase/auth");
-      const { getDoc, doc } = await import("firebase/firestore");
-      const { auth, db } = await import("@/lib/firebase");
-      
-      const userCredential = await signInWithEmailAndPassword(auth, email.trim(), password);
-      const user = userCredential.user;
-
-      // Ambil data user dari Firestore untuk memvalidasi role
-      const userDoc = await getDoc(doc(db, "users", user.uid));
-      if (!userDoc.exists()) {
-        await auth.signOut();
-        throw new Error("Data user tidak ditemukan.");
-      }
-
-      const userData = userDoc.data();
-      if (userData.role !== "SUPER_ADMIN") {
-        await auth.signOut();
-        throw new Error("Akses ditolak: Hanya Super Admin yang diizinkan.");
-      }
-
-      // Login sukses & terverifikasi super admin → arahkan langsung ke dashboard
-      const dashboardUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:3001";
-      window.location.href = `${dashboardUrl}/dashboard`;
-    } catch (err: any) {
-      console.error("Login error:", err);
-      let errMsg = "Login gagal. Coba lagi.";
-      if (err.code === "auth/invalid-credential" || err.code === "auth/wrong-password" || err.code === "auth/user-not-found") {
-        errMsg = "Email atau password salah.";
-      } else if (err.message) {
-        errMsg = err.message;
-      }
-      setError(errMsg);
-      setLoading(false);
-    }
+    const dashboardUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:3001";
+    // Redirect langsung ke dashboard login dengan membawa kredensial untuk di-autentikasi di domain dashboard
+    window.location.href = `${dashboardUrl}/login?email=${encodeURIComponent(email.trim())}&password=${encodeURIComponent(password)}`;
   };
 
   return (
