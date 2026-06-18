@@ -27,11 +27,10 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const { getAuth, signInWithEmailAndPassword } = await import("firebase/auth");
+      const { signInWithEmailAndPassword } = await import("firebase/auth");
       const { getDoc, doc } = await import("firebase/firestore");
-      const { app, db } = await import("@/lib/firebase");
+      const { auth, db } = await import("@/lib/firebase");
       
-      const auth = getAuth(app);
       const userCredential = await signInWithEmailAndPassword(auth, email.trim(), password);
       const user = userCredential.user;
 
