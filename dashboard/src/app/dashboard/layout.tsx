@@ -20,9 +20,10 @@ export default function DashboardLayout({
 
   useEffect(() => {
     if (!loading && !user) {
-      router.push('/login');
+      const landingUrl = process.env.NEXT_PUBLIC_LANDING_URL || "http://localhost:3000";
+      window.location.href = `${landingUrl}/en/login`;
     }
-  }, [user, loading, router]);
+  }, [user, loading]);
 
   if (loading) {
     return (
