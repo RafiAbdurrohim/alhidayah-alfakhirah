@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import Link from "next/link";
 import { Eye, EyeOff, ArrowLeft } from "lucide-react";
@@ -14,6 +14,11 @@ export default function LoginPage() {
   const router = useRouter();
   const params = useParams();
   const locale = (params?.locale as string) ?? "en";
+
+  useEffect(() => {
+    const dashboardUrl = process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:3001";
+    window.location.href = `${dashboardUrl}/login`;
+  }, []);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

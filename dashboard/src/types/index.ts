@@ -54,6 +54,8 @@ export interface Order {
   createdAt: Timestamp;
   updatedAt: Timestamp;
   outletId: string;
+  latitude?: number;
+  longitude?: number;
 }
 
 // Driver types

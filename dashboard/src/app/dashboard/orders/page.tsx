@@ -29,6 +29,7 @@ const statusOptions: OrderStatus[] = [
 ];
 
 export default function OrdersPage() {
+  const [serviceFilter, setServiceFilter] = useState<'food' | 'tours' | 'cargo' | 'massage' | 'beauty' | 'shopping'>('food');
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
@@ -39,7 +40,10 @@ export default function OrdersPage() {
   const loadOrders = async () => {
     setLoading(true);
     try {
-      const filters = statusFilter !== 'ALL' ? { status: statusFilter } : undefined;
+      const filters: any = { service: serviceFilter };
+      if (statusFilter !== 'ALL') {
+        filters.status = statusFilter;
+      }
       const data = await getOrders(filters);
       setOrders(data);
     } catch (error) {
@@ -51,7 +55,7 @@ export default function OrdersPage() {
 
   useEffect(() => {
     loadOrders();
-  }, [statusFilter]);
+  }, [statusFilter, serviceFilter]);
 
   // Filter orders by search
   const filteredOrders = orders.filter((order) => {
@@ -66,7 +70,7 @@ export default function OrdersPage() {
   // Update order status
   const handleStatusUpdate = async (orderId: string, newStatus: OrderStatus) => {
     try {
-      await updateOrderStatus(orderId, newStatus);
+      await updateOrderStatus(orderId, newStatus, serviceFilter);
       await loadOrders(); // Reload data
     } catch (error) {
       console.error('Error updating status:', error);
@@ -168,6 +172,21 @@ export default function OrdersPage() {
                   className="pl-10"
                 />
               </div>
+            </div>
+
+             {/* Service Filter */}
+            <div className="w-full md:w-48">
+              <Select
+                value={serviceFilter}
+                onChange={(e) => setServiceFilter(e.target.value as any)}
+              >
+                <option value="food">Go Food</option>
+                <option value="tours">Go Tour</option>
+                <option value="cargo">Go Cargo</option>
+                <option value="massage">Go Massage</option>
+                <option value="beauty">Go Beauty</option>
+                <option value="shopping">Go Shop</option>
+              </Select>
             </div>
 
             {/* Status Filter */}
@@ -286,6 +305,18 @@ export default function OrdersPage() {
                 <p>Name: {selectedOrder.customerName}</p>
                 <p>Phone: {selectedOrder.customerPhone}</p>
                 <p>Address: {selectedOrder.address}</p>
+                {selectedOrder.latitude && selectedOrder.longitude && (
+                  <div className="mt-1">
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${selectedOrder.latitude},${selectedOrder.longitude}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-teal-600 hover:text-teal-800 hover:underline font-medium"
+                    >
+                      📍 Open in Google Maps
+                    </a>
+                  </div>
+                )}
               </div>
 
               <div>
