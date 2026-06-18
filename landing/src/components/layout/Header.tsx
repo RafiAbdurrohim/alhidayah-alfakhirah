@@ -64,10 +64,10 @@ export function Header() {
             className="flex items-center gap-2 text-[12px] font-normal tracking-wide text-cream-dim hover:text-gold-light border border-gold/20 px-3 py-1.5 hover:border-gold/40 transition-all hidden sm:block">
             {locale === "en" ? "عربي" : "EN"}
           </button>
-          <a href={process.env.NEXT_PUBLIC_DASHBOARD_URL ? `${process.env.NEXT_PUBLIC_DASHBOARD_URL}/login` : "http://localhost:3001/login"}
+          <Link href={`/${locale}/login`}
             className="hidden sm:inline-flex items-center text-[11px] tracking-[0.15em] uppercase text-gold-light border border-gold/30 px-5 py-2 hover:bg-gold/8 hover:border-gold/60 transition-all duration-300">
             {t("login") || "Login"}
-          </a>
+          </Link>
           <a href="#cta"
             className="inline-flex items-center text-[11px] tracking-[0.15em] uppercase bg-teal text-dark font-medium px-5 py-2 hover:bg-teal-light transition-colors duration-200 teal-glow-sm">
             {t("common.downloadApp")}
@@ -92,11 +92,11 @@ export function Header() {
             ))}
           </nav>
           <div className="flex flex-col gap-3">
-            <a href={process.env.NEXT_PUBLIC_DASHBOARD_URL ? `${process.env.NEXT_PUBLIC_DASHBOARD_URL}/login` : "http://localhost:3001/login"}
+            <Link href={`/${locale}/login`}
               className="text-center text-[11px] tracking-[0.15em] uppercase text-gold-light border border-gold/30 px-5 py-3 hover:bg-gold/8 transition-all"
               onClick={() => setMobileOpen(false)}>
               Login
-            </a>
+            </Link>
             <a href="#cta"
               className="text-center text-[11px] tracking-[0.15em] uppercase bg-teal text-dark font-medium px-5 py-3 hover:bg-teal-light transition-colors"
               onClick={() => setMobileOpen(false)}>
